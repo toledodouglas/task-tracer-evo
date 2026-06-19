@@ -1,19 +1,26 @@
 using System;
+using System.Collections.Generic;
+using TaskTracker.Domain.Enums;
+
+namespace TaskTracker.Domain.Entities;
 
 public class TaskItem : Entity
 {
 	public string Title { get; private set; }
 	public string Description { get; private set; }
-	public string Status { get; private set; }
-	public list<string> Tag { get; private set; }
+	public TaskStatus Status { get; private set; }
+	public List<string> Tags { get; private set; }
 	public DateTime CreatedAt { get; private set; }
-	public TaskItem(string title, string description, string status, list<string> tag, DateTime createdAt)
+	public TaskItem(string title, string description, TaskStatus status, List<string> tags, DateTime createdAt)
 	{
-		Title = title;
+        if (string.IsNullOrWhiteSpace(title))
+            throw new ArgumentException("O título da tarefa não pode ser vazio.");
+
+        Title = title;
 		Description = description;
-		Status = status;
-		Tag = tag;
-		DueDate = createdAt;
+        Status = TaskStatus.Todo;
+		Tags = tags ?? new List<string>();
+		CreatedAt = DateTime.UtcNow;
 
 	}
 

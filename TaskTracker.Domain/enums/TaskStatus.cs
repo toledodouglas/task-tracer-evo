@@ -1,6 +1,8 @@
+namespace TaskTracker.Domain.Enums;
+
 enum TasksStatus
 {
-    todo,
-    inProgress,
-    done
+    Todo,
+    InProgress,
+    Done
 }
