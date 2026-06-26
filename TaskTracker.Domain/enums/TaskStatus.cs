@@ -1,6 +1,6 @@
 namespace TaskTracker.Domain.Enums;
 
-enum TasksStatus
+public enum TasksStatus
 {
     Todo,
     InProgress,
